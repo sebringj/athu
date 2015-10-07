@@ -1,2 +1,4 @@
 # athu.io
-open source micro-service authentication
+open source microservice authentication
+## Tech stack
+Node and Mongo

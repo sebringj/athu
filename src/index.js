@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var nunjucks = require('nunjucks');
 var app = express();
 var port = process.env.PORT || config.port || 3000;
+var passport = require('passport');
 
 nunjucks.configure('src/views', {
     autoescape: true,
@@ -11,6 +12,7 @@ nunjucks.configure('src/views', {
 });
 
 app.use('/', require('./controllers'));
+app.use(passport.initialize());
 app.use(express.static('public'));
 app.use(favicon(__dirname + '/../public/favicon.ico'));
 
