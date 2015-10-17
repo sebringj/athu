@@ -16,32 +16,7 @@ app.use(passport.session());
 app.use(express.static('public'));
 app.use(favicon(__dirname + '/../public/favicon.ico'));
 
-var providers = {
-  google: {
-    Strategy: require('passport-google-oauth').OAuth2Strategy
-  },
-  facebook: {
-    Strategy: require('passport-facebook').Strategy
-  },
-  dropbox: {
-    authenticate: 'dropbox-oauth2',
-    Strategy: require('passport-dropbox-oauth2').Strategy
-  },
-  twitter: {
-    Strategy: require('passport-twitter').Strategy
-  },
-  github: {
-    Strategy: require('passport-github').Strategy
-  },
-  instagram: {
-    Strategy: require('passport-instagram').Strategy
-  },
-  reddit: {
-    Strategy: require('passport-reddit').Strategy
-  }
-};
-
-for (let provider of Object.keys(providers)) {
+for (let provider of Object.keys(config.providers)) {
   passportHelper.setProvider({
     app
     provider: provider,

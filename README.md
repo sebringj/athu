@@ -1,9 +1,9 @@
 # athu.io
 open source microservice authentication
 
-Athu.io's goal is to be a very simple and reliable abstraction for authenticating clients and providing a JWT token back to the consuming application.
+athu.io's goal is to identify a user from a provider by providing a JWT token back to the consuming website.
 
-A consuming application needs to be mapped with environment variables providing a public/private key pair.
+A consuming website needs to be mapped with environment variables providing a public/private key pair.
 
 ## Tech stack
 Node v4.1.1
@@ -12,3 +12,9 @@ Node v4.1.1
 
 * Google
 * Facebook
+* Twitter
+* GitHub
+* Reddit
+* Dropbox
+* Instragram
+* LinkedIn
