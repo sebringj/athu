@@ -45,7 +45,9 @@ module.exports = {
           res.redirect(referrer.errorRedirect);
           return;
         }
-				let jwtToken = jwt.getToken({ profile, secret: referrer.secret });
+        let jwtToken = jwt.getToken({
+          profile, secret: referrer.secret
+        });
         res.redirect(referer.successRedirect + '?jwt=' + jwtToken);
       })(req, res, next);
     });
