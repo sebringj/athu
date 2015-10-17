@@ -1,6 +1,6 @@
 'use strict';
 
-var jwt = require('./utils/jwt');
+var jwt = require('./jwt');
 var config = require('config');
 var passport = require('passport');
 
