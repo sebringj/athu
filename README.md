@@ -1,4 +1,4 @@
-<div style="text-align:center"><img src="https://raw.githubusercontent.com/sebringj/athu.io/master/public/logo.png"></div>
+<div style="text-align:center"><img style="display:inline-block" src="https://raw.githubusercontent.com/sebringj/athu.io/master/public/logo.png"></div>
 # athu.io
 open source microservice authentication
 
