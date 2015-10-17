@@ -1,8 +1,8 @@
 'use strict';
 
-var jwt = require('./jwt');
-var config = require('config');
-var passport = require('passport');
+let jwt = require('./jwt');
+let config = require('config');
+let passport = require('passport');
 
 module.exports = {
   setProvider: function(options) {
@@ -10,42 +10,43 @@ module.exports = {
     options.authenticate = options.authenticate || options.provider;
 
     passport.use(new options.Strategy(config.providers[options.provider], function() {
-      var args = Array.prototype.slice.call(arguments);
-      var profile = args[args.length - 2];
-      var done = args[args.length - 1];
+      let args = Array.prototype.slice.call(arguments);
+      let profile = args[args.length - 2];
+      let done = args[args.length - 1];
       return done(null, {
         id: profile.id,
         provider: options.provider
       });
     }));
 
-    app.get(
-      '/auth/' + provider,
+    options.app.get(
+      '/auth/' + options.provider,
       function setRedirect(req, res, next) {
-        var referer = config.referers[req.headers.referer];
+        let referrer = config.referrers[req.get('Referrer')];
         if (!referer) {
           res.status(400).send('bad request');
           return;
         }
-        req.session.referer = referer;
+        req.session.referrer = referer;
         next();
       },
       passport.authenticate(options.authenticate, options.options)
     );
 
-    app.get('/auth/' + provider + '/callback', function(req, res, next) {
-      if (!req.session.referer) {
+    options.app.get('/auth/' + options.provider + '/callback', function(req, res, next) {
+      if (!req.session.referrer) {
         res.status(400).send('bad request');
         return;
       }
       passport.authenticate(options.authenticate, function(err, profile, info) {
-        var referer = req.session.referer;
+        let referrer = req.session.referrer;
         req.session.destroy();
         if (err || !profile) {
-          res.redirect(referer.errorRedirect);
+          res.redirect(referrer.errorRedirect);
           return;
         }
-        res.redirect(referer.successRedirect + '?jwt=' + jwt.getToken(profile));
+				let jwtToken = jwt.getToken({ profile, secret: referrer.secret });
+        res.redirect(referer.successRedirect + '?jwt=' + jwtToken);
       })(req, res, next);
     });
 

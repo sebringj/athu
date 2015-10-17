@@ -1,13 +1,13 @@
 'use strict';
 
-var config = require('config');
-var express = require('express');
-var favicon = require('serve-favicon');
-var app = express();
-var port = process.env.PORT || config.port || 3000;
-var passport = require('passport');
-var passportHelper = require('./utils/passport');
-var session = require('express-session')
+let config = require('config');
+let express = require('express');
+let favicon = require('serve-favicon');
+let app = express();
+let port = process.env.PORT || config.port || 3000;
+let passport = require('passport');
+let passportHelper = require('./utils/passport');
+let session = require('express-session');
 
 app.use(session({
   secret: config.sessionSecret
@@ -18,16 +18,14 @@ app.use(express.static('public'));
 app.use(favicon(__dirname + '/../public/favicon.ico'));
 
 for (let provider of Object.keys(config.providers)) {
+  let settings = config.providers[provider];
   passportHelper.setProvider({
-    app,
-    provider: provider,
-    authenticate: config.providers[provider].authenticate,
-    Strategy: config.providers[provider].Strategy
+    app, provider, authenticate: settings.authenticate, Strategy: settings.Strategy
   });
 }
 
-var server = app.listen(port, function() {
-  var host = server.address().address;
-  var port = server.address().port;
+let server = app.listen(port, function() {
+  let host = server.address().address;
+  let port = server.address().port;
   console.log('athu.io listening at http(s)://%s:%s', host, port);
 });

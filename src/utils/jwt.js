@@ -4,7 +4,7 @@ var jwtConfig = require('config').jwt;
 var jwt = require('jsonwebtoken');
 
 module.exports = {
-  getToken: function(user) {
-    return jwt.sign(user, jwtConfig.secret, jwtConfig.options);
+  getToken: function(options) {
+    return jwt.sign(options.profile, options.secret, jwtConfig);
   }
 };

@@ -3,11 +3,10 @@
 module.exports = {
   sessionSecret: process.env.SESSION_SECRET,
   jwt: {
-    secret: process.env.JWT_SECRET,
-    options: {
-      expiresInMinutes: 1440 // 24 hours
-    }
+    expiresInMinutes: 1440 // 24 hours
   },
+
+	// list supported providers here
   providers: {
     google: {
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -15,6 +14,7 @@ module.exports = {
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
       Strategy: require('passport-google-oauth').OAuth2Strategy
     },
+		/*
     facebook: {
       clientID: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
@@ -59,11 +59,15 @@ module.exports = {
       scope: ['r_emailaddress', 'r_basicprofile'],
       Strategy: require('passport-linkedin-oauth2').Strategy
     }
+		*/
   },
-  referers: {
+
+	// list supported referrers here
+  referrers: {
     localhost: {
       errorRedirect: '',
-      successRedirect: ''
+      successRedirect: '',
+			secret: process.env.LOCALHOST_SECRET
     }
   }
 };
