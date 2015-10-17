@@ -29,12 +29,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sebringj/ahth-io.git"
+    "url": "https://github.com/sebringj/athu.io.git"
   },
   "author": "Jason R. Sebring",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sebringj/ahth-io/issues"
+    "url": "https://github.com/sebringj/athu.io/issues"
   },
-  "homepage": "https://github.com/sebringj/ahth-io"
+  "homepage": "https://github.com/sebringj/athu.io"
 }
