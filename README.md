@@ -1,3 +1,4 @@
+![authu.io Logo](https://raw.githubusercontent.com/sebringj/athu.io/master/public/logo.png)
 # athu.io
 open source microservice authentication
 
