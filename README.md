@@ -1,9 +1,10 @@
 # athu.io
 open source microservice authentication
 
-athu.io's goal is to identify a user from a provider by providing a JWT token back to the consuming website.
+athu.io only cares about identifying a user from a provider and providing a JWT back to the consuming website, focusing on simple configuration over programming so that adding a new provider is just a matter of
+installing an npm package then adding it to the config directory.
 
-A consuming website needs to be mapped with environment variables providing a public/private key pair.
+See the config directory for a list of the expected configuration values.
 
 ## Tech stack
 Node v4.1.1
