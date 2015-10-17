@@ -1,7 +1,7 @@
 'use strict';
 
-var jwtConfig = require('config').jwt;
-var jwt = require('jsonwebtoken');
+let jwtConfig = require('config').jwt;
+let jwt = require('jsonwebtoken');
 
 module.exports = {
   getToken: function(options) {
