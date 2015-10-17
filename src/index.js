@@ -7,8 +7,9 @@ var app = express();
 var port = process.env.PORT || config.port || 3000;
 var passport = require('passport');
 var passportHelper = require('./utils/passport');
+var session = require('express-session')
 
-app.use(express.session({
+app.use(session({
   secret: config.sessionSecret
 }));
 app.use(passport.initialize());
@@ -20,8 +21,8 @@ for (let provider of Object.keys(config.providers)) {
   passportHelper.setProvider({
     app,
     provider: provider,
-    authenticate: providers[provider].authenticate,
-    Strategy: providers[provider].Strategy
+    authenticate: config.providers[provider].authenticate,
+    Strategy: config.providers[provider].Strategy
   });
 }
 
