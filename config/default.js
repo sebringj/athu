@@ -32,7 +32,7 @@ module.exports = {
     twitter: {
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: process.env..TWITTER_CONSUMER_CALLBACK_URL,
+      callbackURL: process.env.TWITTER_CONSUMER_CALLBACK_URL,
       Strategy: require('passport-twitter').Strategy
     },
     github: {
@@ -55,7 +55,7 @@ module.exports = {
     linkedin: {
       clientID: process.env.LINKEDIN_CLIENT_ID,
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-      callbackURL: process.env.LINKEDIN_CALLBACK_URL
+      callbackURL: process.env.LINKEDIN_CALLBACK_URL,
       scope: ['r_emailaddress', 'r_basicprofile'],
       Strategy: require('passport-linkedin-oauth2').Strategy
     }

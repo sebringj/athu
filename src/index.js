@@ -18,7 +18,7 @@ app.use(favicon(__dirname + '/../public/favicon.ico'));
 
 for (let provider of Object.keys(config.providers)) {
   passportHelper.setProvider({
-    app
+    app,
     provider: provider,
     authenticate: providers[provider].authenticate,
     Strategy: providers[provider].Strategy
