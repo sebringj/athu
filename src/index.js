@@ -20,8 +20,8 @@ for (let provider of Object.keys(config.providers)) {
   passportHelper.setProvider({
     app
     provider: provider,
-    authenticate: providers[key].authenticate,
-    Strategy: providers[key].Strategy
+    authenticate: providers[provider].authenticate,
+    Strategy: providers[provider].Strategy
   });
 }
 
