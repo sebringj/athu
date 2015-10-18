@@ -29,7 +29,7 @@ module.exports = {
       function setRedirect(req, res, next) {
         let referrer = config.referrers[req.get('Referrer')];
         if (!referrer) {
-          res.status(400).send(req.get('Referrer'));
+          res.status(400).send('bad rererrer');
           return;
         }
         req.session.referrer = referrer;
