@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+  websiteRootAddress: 'http://localhost:3000',
   sessionSecret: process.env.SESSION_SECRET,
   jwt: {
     expiresInMinutes: 1440 // 24 hours
@@ -12,7 +13,8 @@ module.exports = {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      Strategy: require('passport-google-oauth').OAuth2Strategy
+      Strategy: require('passport-google-oauth').OAuth2Strategy,
+      scope: ['profile']
     },
     /*
     facebook: {
@@ -64,9 +66,9 @@ module.exports = {
 
   // list supported referrers here
   referrers: {
-    localhost: {
-      errorRedirect: '',
-      successRedirect: '',
+    'http://localhost:3001/': {
+      errorRedirect: 'http://localhost:3001/error',
+      successRedirect: 'http://localhost:3001/success',
       secret: process.env.LOCALHOST_SECRET
     }
   }
