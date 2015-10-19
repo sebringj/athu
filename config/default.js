@@ -51,7 +51,7 @@ module.exports = {
     linkedin: {
       clientID: process.env.LINKEDIN_CLIENT_ID,
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-      scope: ['r_emailaddress', 'r_basicprofile'],
+      scope: ['r_basicprofile'],
       Strategy: require('passport-linkedin-oauth2').Strategy
     }
     */
