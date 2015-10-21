@@ -10,9 +10,9 @@ See the config directory for a list of the expected configuration values.
 When a provider is added to "/config/default.js", the provider name is used to make the routes.
 
 For example, if you configured "google" and "facebook" as providers, your consuming app would link to either:
-https://[auth host]/auth/google
+https://[athu host]/auth/google
 or
-https://[auth host]/auth/facebook
+https://[athu host]/auth/facebook
 
 ## Tech stack
 Node v4.1.1
