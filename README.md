@@ -9,11 +9,10 @@ See the config directory for a list of the expected configuration values.
 ## Setup
 When a provider is added to configuration, the provider name is used to make the routes.
 
-For example, if you configured "google" as a provider, your consuming app would then redirect to:
-
+For example, if you configured "google" and "facebook" as providers, your consuming app would link to either:
 https://[auth host]/auth/google
-
-to get the desired JWT token back.
+or
+https://[auth host]/auth/facebook
 
 ## Tech stack
 Node v4.1.1
