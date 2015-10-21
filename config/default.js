@@ -15,7 +15,8 @@ module.exports = {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       Strategy: require('passport-google-oauth').OAuth2Strategy,
-      scope: ['profile']
+      scope: ['profile'],
+      /* authenticate: 'google-oauth2' // if passport module name different */
     },
   },
 

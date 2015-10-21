@@ -7,7 +7,7 @@ installing a passport compatible npm package then adding it to the config direct
 See the config directory for a list of the expected configuration values.
 
 ## Setup
-When a provider is added to configuration, the provider name is used to make the routes.
+When a provider is added to "/config/default.js", the provider name is used to make the routes.
 
 For example, if you configured "google" and "facebook" as providers, your consuming app would link to either:
 https://[auth host]/auth/google
@@ -20,10 +20,3 @@ Node v4.1.1
 ## Passport Providers pre-installed
 
 * Google
-* Facebook
-* Twitter
-* GitHub
-* Reddit
-* Dropbox
-* Instragram
-* LinkedIn
