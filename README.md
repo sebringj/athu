@@ -6,6 +6,15 @@ installing a passport compatible npm package then adding it to the config direct
 
 See the config directory for a list of the expected configuration values.
 
+## Setup
+When a provider is added to configuration, the provider name is used to make the routes.
+
+For example, if you configured "google" as a provider, your consuming app would then redirect to:
+
+https://[auth host]/auth/google
+
+to get the desired JWT token back.
+
 ## Tech stack
 Node v4.1.1
 

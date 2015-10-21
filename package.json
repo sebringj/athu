@@ -1,8 +1,8 @@
 {
-  "name": "athu-io",
+  "name": "athu",
   "version": "1.0.0",
-  "description": "3rd party oauth microservice",
-  "main": "index.js",
+  "description": "authorization microservice",
+  "main": "./src/index.js",
   "dependencies": {
     "asn1.js": "^2.2.1",
     "base64-url": "^1.2.1",
@@ -29,12 +29,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sebringj/athu.io.git"
+    "url": "https://github.com/sebringj/athu.git"
   },
   "author": "Jason R. Sebring",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sebringj/athu.io/issues"
+    "url": "https://github.com/sebringj/athu/issues"
   },
-  "homepage": "https://github.com/sebringj/athu.io"
+  "homepage": "https://github.com/sebringj/athu"
 }
