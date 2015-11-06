@@ -23,9 +23,9 @@ module.exports = {
 
   // List supported referrers here, you'll need the complete URL used in the referer.
   referrers: {
-    'http://localhost:3001/': {
-      errorRedirect: 'http://localhost:3001/invitation/redirect',
-      successRedirect: 'http://localhost:3001/invitation/redirect',
+    'http://localhost:3002/': {
+      errorRedirect: 'http://localhost:3002/invitation/redirect',
+      successRedirect: 'http://localhost:3002/invitation/redirect',
       secret: process.env.LOCALHOST_SECRET
     }
   }

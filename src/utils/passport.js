@@ -30,7 +30,9 @@ module.exports = {
     options.app.get(
       providerAuthUrl,
       function setRedirect(req, res, next) {
-        let referrer = config.referrers[req.get('Referrer')];
+        let referrerHeader = req.get('Referrer') || req.query.referrer;
+        console.log(referrerHeader);
+        let referrer = config.referrers[referrerHeader];
         if (!referrer) {
           res.status(400).send('bad rererrer');
           return;
