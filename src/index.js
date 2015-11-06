@@ -29,5 +29,5 @@ for (let provider of Object.keys(config.providers)) {
 let server = app.listen(port, function() {
   let host = server.address().address;
   let port = server.address().port;
-  console.log('athu.io listening at http(s)://%s:%s', host, port);
+  console.log('athu listening at http(s)://%s:%s', host, port);
 });

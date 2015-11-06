@@ -3,6 +3,9 @@
 let jwt = require('./jwt');
 let config = require('config');
 let passport = require('passport');
+let url = require('url');
+let _ = require('lodash');
+let appendQuery = require('./appendQuery');
 
 module.exports = {
   setProvider: function(options) {
@@ -33,6 +36,7 @@ module.exports = {
           return;
         }
         req.session.referrer = referrer;
+        req.session.query = req.query;
         next();
       },
       passport.authenticate(options.authenticate, options.options)
@@ -44,16 +48,16 @@ module.exports = {
         return;
       }
       let referrer = req.session.referrer;
+      let query = req.session.query || {};
       req.session.destroy();
       passport.authenticate(options.authenticate, function(err, profile, info) {
         if (err || !profile) {
-          res.redirect(referrer.errorRedirect);
+          res.redirect(appendQuery(referrer.errorRedirect, query));
           return;
         }
-        let jwtToken = jwt.getToken({
-          profile, secret: referrer.secret
-        });
-        res.redirect(referrer.successRedirect + '?jwt=' + jwtToken);
+        let jwtToken = jwt.getToken({ profile, secret: referrer.secret });
+        query.jwt = jwtToken;
+        res.redirect(appendQuery(referrer.successRedirect, query));
       })(req, res, next);
     });
 
