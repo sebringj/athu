@@ -4,10 +4,13 @@ let config = require('config');
 let express = require('express');
 let favicon = require('serve-favicon');
 let app = express();
-let port = process.env.PORT || config.port || 3000;
+let port = config.port;
 let passport = require('passport');
 let passportHelper = require('./utils/passport');
 let session = require('express-session');
+let http = require('http');
+let https = require('https');
+let fs = require('fs');
 
 app.use(session({
   secret: config.sessionSecret,
@@ -26,8 +29,10 @@ for (let provider of Object.keys(config.providers)) {
   });
 }
 
-let server = app.listen(port, function() {
-  let host = server.address().address;
-  let port = server.address().port;
-  console.log('athu listening at http(s)://%s:%s', host, port);
-});
+if (config.ssl)
+  https.createServer({
+    key: fs.readFileSync(config.sslKey),
+    cert: fs.readFileSync(config.sslCert)
+  }, app).listen(port);
+else
+  http.createServer(app).listen(port);

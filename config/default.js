@@ -1,8 +1,10 @@
 'use strict';
 
 module.exports = {
-  websiteRootAddress: 'http://localhost:3000',
+  port: process.env.PORT,
+  websiteRootAddress: process.env.WEBSITE_ROOT_ADDRESS,
   sessionSecret: process.env.SESSION_SECRET,
+  ssl: (process.env.SSL === 'true'),
   jwt: {
     expiresInMinutes: 1440, // 24 hours
     issuer: 'athu'
@@ -23,10 +25,15 @@ module.exports = {
 
   // List supported referrers here, you'll need the complete URL used in the referer.
   referrers: {
-    'http://localhost:3002/': {
-      errorRedirect: 'http://localhost:3002/invitation/redirect',
-      successRedirect: 'http://localhost:3002/invitation/redirect',
-      secret: process.env.LOCALHOST_SECRET
+    'https://site1.com/': {
+      errorRedirect: 'https://admin.westcoastprimemeats.com',
+      successRedirect: 'https://admin.westcoastprimemeats.com',
+      secret: process.env.SITE1_SECRET
+    },
+    'https://site2.com/': {
+      errorRedirect: 'https://site2.com?athu=error',
+      successRedirect: 'https://site2.com',
+      secret: process.env.SITE2_SECRET
     }
   }
 };
