@@ -5,6 +5,8 @@ module.exports = {
   websiteRootAddress: process.env.WEBSITE_ROOT_ADDRESS,
   sessionSecret: process.env.SESSION_SECRET,
   ssl: (process.env.SSL === 'true'),
+  sslKey: process.env.SSL_KEY,
+  sslCert: process.env.SSL_CERT,
   jwt: {
     expiresInMinutes: 1440, // 24 hours
     issuer: 'athu'
