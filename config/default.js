@@ -26,8 +26,8 @@ module.exports = {
   // List supported referrers here, you'll need the complete URL used in the referer.
   referrers: {
     'https://site1.com/': {
-      errorRedirect: 'https://admin.westcoastprimemeats.com',
-      successRedirect: 'https://admin.westcoastprimemeats.com',
+      errorRedirect: 'https://site1.com?athu=error',
+      successRedirect: 'https://site2.com',
       secret: process.env.SITE1_SECRET
     },
     'https://site2.com/': {
