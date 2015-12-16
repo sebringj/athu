@@ -11,7 +11,7 @@ See the config directory for a list of the expected configuration values.
 - npm install [passport compatible npm package]
 - Go to config/default.js
 - add in provider details according to the passport-compabile npm package
-- add referrer URL config information
+- view EXAMPLE_ENV to set your environment variables
 - npm start
 - consuming app needs to call http(s)://[athu host]/auth/[provider name]
 
@@ -22,7 +22,7 @@ https://[athu host]/auth/google
 or
 https://[athu host]/auth/facebook
 
-## 
+##
 
 ## Tech stack
 Node v4.1.1
