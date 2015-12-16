@@ -6,6 +6,8 @@ installing a passport compatible npm package then adding it to the config direct
 
 See the config directory for a list of the expected configuration values.
 
+The HTTP_REFERRER is used to redirect back to the consuming app, see EXAMPLE_ENV for env var settings.
+
 ## Setup
 
 - npm install [passport compatible npm package]
