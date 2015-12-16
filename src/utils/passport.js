@@ -31,7 +31,6 @@ module.exports = {
       providerAuthUrl,
       function setRedirect(req, res, next) {
         let referrerHeader = req.get('Referrer') || req.query.referrer;
-        console.log(referrerHeader);
         let referrer = config.referrers[referrerHeader];
         if (!referrer) {
           res.status(400).send('bad rererrer');
@@ -49,17 +48,27 @@ module.exports = {
         res.status(400).send('bad request');
         return;
       }
+
       let referrer = req.session.referrer;
       let query = req.session.query || {};
       req.session.destroy();
+
       passport.authenticate(options.authenticate, function(err, profile, info) {
         if (err || !profile) {
           res.redirect(appendQuery(referrer.errorRedirect, query));
           return;
         }
-        let jwtToken = jwt.getToken({ profile, secret: referrer.secret });
-        query.jwt = jwtToken;
-        res.redirect(appendQuery(referrer.successRedirect, query));
+
+        jwt.getToken({ profile, secret: referrer.secret, issuer: options.issuer })
+        .then(function(token) {
+          query.jwt = token;
+          res.redirect(appendQuery(referrer.successRedirect, query));
+        })
+        .catch(function(err) {
+          console.error(err);
+          res.redirect(appendQuery(referrer.errorRedirect, query));
+        });
+
       })(req, res, next);
     });
 

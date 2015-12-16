@@ -15,7 +15,8 @@ for (let referrerName of referrerNames) {
   referrers[referrerKey] = {
     errorRedirect: referrerNames['REFERRER_' + key + '_ERROR_REDIRECT'],
     successRedirect: referrerNames['REFERRER_' + key + '_SUCCESS_REDIRECT'],
-    secret: referrerNames['REFERRER_' + key + '_JWT_SECRET']
+    secret: referrerNames['REFERRER_' + key + '_JWT_SECRET'],
+    issuer: referrerNames['REFERRER_' + key + '_ISSUER']
   };
 }
 
@@ -27,8 +28,7 @@ module.exports = {
   sslKey: process.env.SSL_KEY,
   sslCert: process.env.SSL_CERT,
   jwt: {
-    expiresInMinutes: 1440, // 24 hours
-    issuer: 'athu'
+    expiresInMinutes: 1440 // 24 hours
   },
 
   // List passport-compatible providers installed and setup.
