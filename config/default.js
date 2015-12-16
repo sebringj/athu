@@ -1,10 +1,29 @@
 'use strict';
 
+/*
+
+See EXAMPLE_ENV for setting env vars
+
+*/
+
+// construct HTTP referrer lookup
+let referrerNames = process.env.REFERRER_NAMES.split(',');
+let referrers = {};
+for (let referrerName of referrerNames) {
+  let key = referrerName.trim();
+  let referrerKey = referrerNames['REFERRER_' + key + '_URL'];
+  referrers[referrerKey] = {
+    errorRedirect: referrerNames['REFERRER_' + key + '_ERROR_REDIRECT'],
+    successRedirect: referrerNames['REFERRER_' + key + '_SUCCESS_REDIRECT'],
+    secret: referrerNames['REFERRER_' + key + '_JWT_SECRET']
+  };
+}
+
 module.exports = {
   port: process.env.PORT,
-  websiteRootAddress: process.env.WEBSITE_ROOT_ADDRESS,
+  websiteRootAddress: process.env.WEBSITE_ROOT_URL,
   sessionSecret: process.env.SESSION_SECRET,
-  ssl: (process.env.SSL === 'true'),
+  sslPort: process.env.SSL_PORT,
   sslKey: process.env.SSL_KEY,
   sslCert: process.env.SSL_CERT,
   jwt: {
@@ -21,21 +40,9 @@ module.exports = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       Strategy: require('passport-google-oauth').OAuth2Strategy,
       scope: ['profile'],
-      /* authenticate: 'google-oauth2' // if passport authenticate name is different */
+      /* authenticate: 'google-oauth2' // set when passport authenticate name is different */
     },
   },
-
-  // List supported referrers here, you'll need the complete URL used in the referer.
-  referrers: {
-    'https://site1.com/': {
-      errorRedirect: 'https://site1.com?athu=error',
-      successRedirect: 'https://site2.com',
-      secret: process.env.SITE1_SECRET
-    },
-    'https://site2.com/': {
-      errorRedirect: 'https://site2.com?athu=error',
-      successRedirect: 'https://site2.com',
-      secret: process.env.SITE2_SECRET
-    }
-  }
+  // generated from above, see EXAMPLE_ENV for setting env vars
+  referrers
 };

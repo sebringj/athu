@@ -4,7 +4,6 @@ let config = require('config');
 let express = require('express');
 let favicon = require('serve-favicon');
 let app = express();
-let port = config.port;
 let passport = require('passport');
 let passportHelper = require('./utils/passport');
 let session = require('express-session');
@@ -29,10 +28,10 @@ for (let provider of Object.keys(config.providers)) {
   });
 }
 
-if (config.ssl)
+if (config.sslPort)
   https.createServer({
     key: fs.readFileSync(config.sslKey),
     cert: fs.readFileSync(config.sslCert)
-  }, app).listen(port);
+  }, app).listen(config.sslPort);
 else
-  http.createServer(app).listen(port);
+  http.createServer(app).listen(config.port);
