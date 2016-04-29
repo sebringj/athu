@@ -31,7 +31,8 @@ for (let provider of Object.keys(config.providers)) {
 if (config.sslPort)
   https.createServer({
     key: fs.readFileSync(config.sslKey),
-    cert: fs.readFileSync(config.sslCert)
+    cert: fs.readFileSync(config.sslCert),
+    ca: fs.readFileSync(config.sslCa)
   }, app).listen(config.sslPort);
 else
   http.createServer(app).listen(config.port);

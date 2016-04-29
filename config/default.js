@@ -27,6 +27,7 @@ module.exports = {
   sslPort: process.env.SSL_PORT,
   sslKey: process.env.SSL_KEY,
   sslCert: process.env.SSL_CERT,
+  sslCa: process.env.SSL_CA,
   jwt: {
     expiresInMinutes: 1440 // 24 hours
   },

@@ -16,7 +16,11 @@
     "passport-google-oauth": "^0.2.0",
     "serve-favicon": "^2.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jshint": "^2.9.2",
+    "mocha": "^2.4.5",
+    "request": "^2.72.0"
+  },
   "scripts": {
     "test": "test",
     "start": "node ./src/index.js"

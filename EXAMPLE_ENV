@@ -5,6 +5,7 @@ export PORT=80
 # export SSL_PORT=443
 # export SSL_KEY='../certs/server.key'
 # export SSL_CERT='../certs/server.crt'
+# export SSL_CA='../certs/ca.crt'
 export GOOGLE_CLIENT_ID='your-google-client-id.apps.googleusercontent.com'
 export GOOGLE_CLIENT_SECRET='google client secret'
 export SESSION_SECRET='your session secret'
