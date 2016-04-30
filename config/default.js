@@ -39,7 +39,7 @@ module.exports = {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       Strategy: require('passport-google-oauth').OAuth2Strategy,
-      scope: ['profile, email'],
+      scope: ['profile', 'email'],
       /* authenticate: 'google-oauth2' // set when passport authenticate name is different */
     },
   },
