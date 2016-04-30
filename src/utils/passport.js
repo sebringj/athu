@@ -6,6 +6,9 @@ let passport = require('passport');
 let url = require('url');
 let _ = require('lodash');
 let appendQuery = require('./appendQuery');
+const PROFILE_ATTRIBUTES = [
+  'provider', 'id', 'displayName', 'name', 'emails', 'photos'
+];
 
 module.exports = {
   setProvider: function(options) {
@@ -21,10 +24,12 @@ module.exports = {
       let args = Array.prototype.slice.call(arguments);
       let profile = args[args.length - 2];
       let done = args[args.length - 1];
-      return done(null, {
-        id: profile.id,
-        provider: options.provider
+      let filteredProfile = {};
+      PROFILE_ATTRIBUTES.forEach(function(key) {
+        if (profile[key])
+          filteredProfile[key] = profile[key];
       });
+      return done(null, filteredProfile);
     }));
 
     options.app.get(
