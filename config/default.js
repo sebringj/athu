@@ -11,12 +11,11 @@ let referrerNames = process.env.REFERRER_NAMES.split(',');
 let referrers = {};
 for (let referrerName of referrerNames) {
   let key = referrerName.trim();
-  let referrerKey = referrerNames['REFERRER_' + key + '_URL'];
-  referrers[referrerKey] = {
-    errorRedirect: referrerNames['REFERRER_' + key + '_ERROR_REDIRECT'],
-    successRedirect: referrerNames['REFERRER_' + key + '_SUCCESS_REDIRECT'],
-    secret: referrerNames['REFERRER_' + key + '_JWT_SECRET'],
-    issuer: referrerNames['REFERRER_' + key + '_ISSUER']
+  referrers[key] = {
+    errorRedirect: process.env['REFERRER_' + key + '_ERROR_REDIRECT'],
+    successRedirect: process.env['REFERRER_' + key + '_SUCCESS_REDIRECT'],
+    secret: process.env['REFERRER_' + key + '_JWT_SECRET'],
+    issuer: process.env['REFERRER_' + key + '_ISSUER']
   };
 }
 
