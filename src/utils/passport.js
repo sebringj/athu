@@ -55,6 +55,7 @@ module.exports = {
 
       passport.authenticate(options.authenticate, function(err, profile, info) {
         if (err || !profile) {
+          console.error(err);
           res.redirect(appendQuery(referrer.errorRedirect, query));
           return;
         }
