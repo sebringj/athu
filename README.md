@@ -9,8 +9,8 @@ See the config directory for a list of the expected configuration values.
 The querystring "?referrer=SOMEWEBSITE" is used to redirect back to the consuming app in a config lookup, see EXAMPLE_ENV for env var settings.
 
 1. The consuming website or app links to a configured provider such as https://athu.yourwebsite.com/auth/google?referrer=mywebsite
-2. The user completes the authorization and is redirected back
-3. Athu looks up your config settings based on the querystring referrer var initially set and redirects back to your website with a "jwt" variable on the querystring set
+2. Auth saves your referrer in session then directs to the configured provider
+3. When auth gets called back from the provider, it then redirects to your referrer lookup with a jwt var on the querystring.
 
 It's probably a good idea to keep everything SSL.
 Have a todo to tokenize the JWT with a reverse proxy.
