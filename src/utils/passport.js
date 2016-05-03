@@ -65,7 +65,12 @@ module.exports = {
           return;
         }
 
-        jwt.getToken({ profile, secret: referrer.secret, issuer: options.issuer })
+        jwt.getToken({
+          profile,
+          secret: referrer.secret,
+          issuer: referrer.issuer,
+          audience: referrer.audience
+        })
         .then(function(token) {
           query.jwt = token;
           res.redirect(appendQuery(referrer.successRedirect, query));
