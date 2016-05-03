@@ -11,6 +11,7 @@ The querystring "?referrer=SOMEWEBSITE" is used to redirect back to the consumin
 1. The consuming website or app links to a configured provider such as https://athu.yourwebsite.com/auth/google?referrer=mywebsite
 2. Athu saves your referrer in session then directs to the configured provider
 3. When athu gets called back from the provider, it then redirects to your referrer lookup with a jwt var on the querystring.
+4. The JWT sends back the profile in the passport profile format, minus any specific provider details outside of that.
 
 It's probably a good idea to keep everything SSL.
 Have a todo to tokenize the JWT with a reverse proxy.
