@@ -10,7 +10,10 @@ module.exports = {
       jwt.sign(
         options.profile,
         options.secret,
-        _.assign({}, jwtConfig, { issuer: options.issuer }),
+        _.assign({}, jwtConfig, {
+          issuer: options.issuer,
+          audience: options.audience
+        }),
         resolve
       );
     });
