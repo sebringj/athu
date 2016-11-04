@@ -33,9 +33,9 @@ for (let provider of Object.keys(config.providers)) {
 }
 
 require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function () {
-  console.log("Listening for ACME http-01 challenges on", this.address());
+  console.log('Listening for ACME http-01 challenges on', this.address());
 });
 
 require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function () {
-  console.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
+  console.log('Listening for ACME tls-sni-01 challenges and serve app on', this.address());
 });
