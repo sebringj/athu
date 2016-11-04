@@ -7,7 +7,6 @@ const app = express();
 const passport = require('passport');
 const passportHelper = require('./utils/passport');
 const session = require('express-session');
-const url = require('url');
 
 const lex = require('letsencrypt-express').create({
   server: 'production',
