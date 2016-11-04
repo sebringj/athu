@@ -27,10 +27,10 @@ Have a todo to tokenize the JWT with a reverse proxy.
 
 When a provider is added to "/config/default.js", the provider name is used to make the routes.
 
-For example, if you configured "google" and "facebook" as providers, your consuming app would link to either:<br>
+For example, if you configured "google" and "facebook" as providers, your consuming app would link to either:<br><br>
 link to: https://[athu host]**/auth/google**<br>
 callback: https://[athu host]**/auth/google/callback**<br><br>
-or<br><br>
+or<br>
 link to: https://[athu host]**/auth/facebook**<br>
 callback: https://[athu host]**/auth/facebook/callback**
 
