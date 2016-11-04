@@ -13,7 +13,7 @@ const lex = require('letsencrypt-express').create({
   server: 'production',
   email: config.letsEncrypt.email,
   agreeTos: true,
-  approveDomains: [url.parse(config.websiteRootAddress).hostname]
+  approveDomains: [config.websiteDomain]
 });
 
 app.use(session({

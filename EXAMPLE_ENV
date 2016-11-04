@@ -3,7 +3,7 @@
 export GOOGLE_CLIENT_ID='your-google-client-id.apps.googleusercontent.com'
 export GOOGLE_CLIENT_SECRET='google client secret'
 export SESSION_SECRET='your session secret'
-export WEBSITE_ROOT_URL='http://athu.yourwebsite.com'
+export WEBSITE_DOMAIN='athu.yourwebsite.com'
 export LETSENCRYPT_EMAIL='your@email.com'
 
 # setup HTTP referrer lookup to pass via querystring

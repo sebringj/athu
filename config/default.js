@@ -22,7 +22,7 @@ for (let referrerName of referrerNames) {
 }
 
 module.exports = {
-  websiteRootAddress: process.env.WEBSITE_ROOT_URL,
+  websiteDomain: process.env.WEBSITE_DOMAIN,
   sessionSecret: process.env.SESSION_SECRET,
   letsEncrypt: {
     email: process.env.LETSENCRYPT_EMAIL
