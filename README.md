@@ -29,7 +29,7 @@ When a provider is added to "/config/default.js", the provider name is used to m
 
 For example, if you configured "google" and "facebook" as providers, your consuming app would link to either:<br><br>
 link to: https://[athu host]**/auth/google**<br>
-callback: https://[athu host]**/auth/google/callback**<br><br>
+callback: https://[athu host]**/auth/google/callback**<br>
 or<br>
 link to: https://[athu host]**/auth/facebook**<br>
 callback: https://[athu host]**/auth/facebook/callback**
