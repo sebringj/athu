@@ -1,15 +1,10 @@
 # athu example environment variables
 
-#port=80
-export SSL_PORT=443
-# setting SSL_PORT and will override PORT, will start node using built-in https server instead of http
-# export SSL_KEY='../certs/private.key'
-# export SSL_CERT='../certs/fullchain.crt'
-# export SSL_CA='../certs/ca.crt'
 export GOOGLE_CLIENT_ID='your-google-client-id.apps.googleusercontent.com'
 export GOOGLE_CLIENT_SECRET='google client secret'
 export SESSION_SECRET='your session secret'
 export WEBSITE_ROOT_URL='http://athu.yourwebsite.com'
+export LETSENCRYPT_EMAIL='your@email.com'
 
 # setup HTTP referrer lookup to pass via querystring
 # i.e. https://athu.mywebsite.com/auth/google?referrer=TEST1

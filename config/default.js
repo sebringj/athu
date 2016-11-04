@@ -22,13 +22,11 @@ for (let referrerName of referrerNames) {
 }
 
 module.exports = {
-  port: process.env.PORT,
   websiteRootAddress: process.env.WEBSITE_ROOT_URL,
   sessionSecret: process.env.SESSION_SECRET,
-  sslPort: process.env.SSL_PORT,
-  sslKey: process.env.SSL_KEY,
-  sslCert: process.env.SSL_CERT,
-  sslCa: process.env.SSL_CA,
+  letsEncrypt: {
+    email: process.env.LETSENCRYPT_EMAIL
+  },
   jwt: {
     expiresInMinutes: 1440 // 24 hours
   },

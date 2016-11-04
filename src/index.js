@@ -1,15 +1,20 @@
 'use strict';
 
-let config = require('config');
-let express = require('express');
-let favicon = require('serve-favicon');
-let app = express();
-let passport = require('passport');
-let passportHelper = require('./utils/passport');
-let session = require('express-session');
-let http = require('http');
-let https = require('https');
-let fs = require('fs');
+const config = require('config');
+const express = require('express');
+const favicon = require('serve-favicon');
+const app = express();
+const passport = require('passport');
+const passportHelper = require('./utils/passport');
+const session = require('express-session');
+const url = require('url');
+
+const lex = require('letsencrypt-express').create({
+  server: 'production',
+  email: config.letsEncrypt.email,
+  agreeTos: true,
+  approveDomains: [url.parse(config.websiteRootAddress).hostname]
+});
 
 app.use(session({
   secret: config.sessionSecret,
@@ -28,11 +33,10 @@ for (let provider of Object.keys(config.providers)) {
   });
 }
 
-if (config.sslPort)
-  https.createServer({
-    key: fs.readFileSync(config.sslKey),
-    cert: fs.readFileSync(config.sslCert),
-    ca: fs.readFileSync(config.sslCa)
-  }, app).listen(config.sslPort);
-else
-  http.createServer(app).listen(config.port);
+require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function () {
+  console.log("Listening for ACME http-01 challenges on", this.address());
+});
+
+require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function () {
+  console.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
+});
