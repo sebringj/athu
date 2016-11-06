@@ -19,7 +19,7 @@ app.use(session({
   secret: config.sessionSecret,
   resave: false,
   saveUninitialized: false,
-  store: new session.MemoryStory()
+  store: new session.MemoryStore()
 }));
 app.use(passport.initialize());
 app.use(passport.session());
