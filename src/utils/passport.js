@@ -37,7 +37,8 @@ module.exports = {
       function setRedirect(req, res, next) {
         let referrerHeader = req.query.referrer || req.get('Referrer');
         console.log('referrerHeader:', referrerHeader);
-        let referrer = config.referrers[referrerHeader];
+        var referrer = config.referrers[referrerHeader];
+        console.log('referrer:', referrer);
         if (!referrer) {
           res.status(400).send('bad rererrer');
           return;
