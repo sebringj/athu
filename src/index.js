@@ -6,7 +6,7 @@ const favicon = require('serve-favicon');
 const app = express();
 const passport = require('passport');
 const passportHelper = require('./utils/passport');
-const session = require('express-session');
+let session = require('express-session');
 
 const lex = require('letsencrypt-express').create({
   server: 'https://acme-v01.api.letsencrypt.org/directory',
