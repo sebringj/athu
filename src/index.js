@@ -9,11 +9,23 @@ const passportHelper = require('./utils/passport');
 const session = require('express-session');
 
 const lex = require('letsencrypt-express').create({
-  server: 'production',
+  // https://acme-v01.api.letsencrypt.org/directory
+  server: 'staging',
   email: config.letsEncrypt.email,
   agreeTos: true,
-  approveDomains: [config.websiteDomain]
+  approveDomains: approveDomains
 });
+
+function approveDomains(opts, certs, cb) {
+  if (certs)
+    opts.domains = certs.altnames;
+  else {
+    opts.email = 'john.doe@example.com';
+    opts.agreeTos = true;
+    opts.domains = [config.websiteDomain];
+  }
+  cb(null, { options: opts, certs: certs });
+}
 
 app.use(session({
   secret: config.sessionSecret,
