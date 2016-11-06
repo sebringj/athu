@@ -7,7 +7,6 @@ const app = express();
 const passport = require('passport');
 const passportHelper = require('./utils/passport');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
 
 const lex = require('letsencrypt-express').create({
   server: 'production',
@@ -17,7 +16,6 @@ const lex = require('letsencrypt-express').create({
 });
 
 app.use(session({
-  store: new SQLiteStore,
   secret: config.sessionSecret,
   resave: false,
   saveUninitialized: false
