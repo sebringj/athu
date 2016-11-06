@@ -43,6 +43,7 @@ module.exports = {
         }
         req.session.referrer = referrer;
         req.session.query = req.query;
+        req.session.save();
         next();
       },
       passport.authenticate(options.authenticate, options.options)
