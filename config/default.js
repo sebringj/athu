@@ -26,7 +26,7 @@ module.exports = {
     email: process.env.LETSENCRYPT_EMAIL
   },
   jwt: {
-    expiresInMinutes: 1440 // 24 hours
+    expiresIn: 60 * 60 * 24 // 24 hours
   },
 
   // List passport-compatible providers installed and setup.
