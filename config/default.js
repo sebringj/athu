@@ -9,22 +9,22 @@ let referrerNames = process.env.REFERRER_NAMES.split(',');
 let referrers = {};
 for (let referrerName of referrerNames) {
   let key = referrerName.trim();
-  let referrerKey = referrerNames['REFERRER_' + key + '_URL'];
+  let prefix = 'REFERRER_' + key;
   referrers[key] = {
-    errorRedirect: referrerNames['REFERRER_' + key + '_ERROR_REDIRECT'],
-    successRedirect: referrerNames['REFERRER_' + key + '_SUCCESS_REDIRECT'],
-    secret: referrerNames['REFERRER_' + key + '_JWT_SECRET'],
-    issuer: referrerNames['REFERRER_' + key + '_ISSUER']
+    errorRedirect: process.env[prefix + '_ERROR_REDIRECT'],
+    successRedirect: process.env[prefix + '_SUCCESS_REDIRECT'],
+    secret: process.env[prefix + '_JWT_SECRET'],
+    issuer: process.env[prefix + '_ISSUER'],
+    audience: process.env[prefix + '_AUDIENCE']
   };
 }
 
 module.exports = {
-  port: process.env.PORT,
-  websiteRootAddress: process.env.WEBSITE_ROOT_URL,
+  websiteDomain: process.env.WEBSITE_DOMAIN,
   sessionSecret: process.env.SESSION_SECRET,
-  sslPort: process.env.SSL_PORT,
-  sslKey: process.env.SSL_KEY,
-  sslCert: process.env.SSL_CERT,
+  letsEncrypt: {
+    email: process.env.LETSENCRYPT_EMAIL
+  },
   jwt: {
     expiresInMinutes: 1440 // 24 hours
   },
@@ -37,7 +37,7 @@ module.exports = {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       Strategy: require('passport-google-oauth').OAuth2Strategy,
-      scope: ['profile'],
+      scope: ['profile', 'email'],
       /* authenticate: 'google-oauth2' // set when passport authenticate name is different */
     },
   },
