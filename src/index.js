@@ -16,9 +16,10 @@ const lex = require('letsencrypt-express').create({
 });
 
 app.use(session({
+  name: 'app.sid',
   secret: config.sessionSecret,
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   store: new session.MemoryStore()
 }));
 app.use(passport.initialize());
