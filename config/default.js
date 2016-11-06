@@ -21,6 +21,8 @@ for (let referrerName of referrerNames) {
   };
 }
 
+console.log(referrers);
+
 module.exports = {
   websiteDomain: process.env.WEBSITE_DOMAIN,
   sessionSecret: process.env.SESSION_SECRET,
