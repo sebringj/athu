@@ -50,6 +50,7 @@ module.exports = {
     );
 
     options.app.get(providerCallbackUrl, function(req, res, next) {
+      console.log('req.session', req.session);
       if (!req.session.referrer) {
         res.status(400).send('bad request');
         return;
