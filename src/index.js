@@ -13,7 +13,8 @@ const lex = require('letsencrypt-express').create({
   server: 'staging',
   email: config.letsEncrypt.email,
   agreeTos: true,
-  approveDomains: approveDomains
+  approveDomains: approveDomains,
+  domains: [config.websiteDomain]
 });
 
 function approveDomains(opts, certs, cb) {
@@ -22,7 +23,6 @@ function approveDomains(opts, certs, cb) {
   else {
     opts.email = 'john.doe@example.com';
     opts.agreeTos = true;
-    opts.domains = [config.websiteDomain];
   }
   cb(null, { options: opts, certs: certs });
 }
