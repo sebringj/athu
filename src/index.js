@@ -18,7 +18,8 @@ const lex = require('letsencrypt-express').create({
 app.use(session({
   secret: config.sessionSecret,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true,
+  cookie: { secure: true }
 }));
 app.use(passport.initialize());
 app.use(express.static('public'));
