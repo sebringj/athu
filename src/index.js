@@ -9,8 +9,7 @@ const passportHelper = require('./utils/passport');
 const session = require('express-session');
 
 const lex = require('letsencrypt-express').create({
-  // https://acme-v01.api.letsencrypt.org/directory
-  server: 'staging',
+  server: 'https://acme-v01.api.letsencrypt.org/directory',
   email: config.letsEncrypt.email,
   agreeTos: true,
   approveDomains: [config.websiteDomain]
