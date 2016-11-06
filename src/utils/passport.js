@@ -6,9 +6,6 @@ let passport = require('passport');
 let url = require('url');
 let _ = require('lodash');
 let appendQuery = require('./appendQuery');
-const PROFILE_ATTRIBUTES = [
-  'provider', 'id', 'displayName', 'name', 'emails', 'photos'
-];
 
 module.exports = {
   setProvider: function(options) {
@@ -18,27 +15,23 @@ module.exports = {
     let providerConfig = config.providers[options.provider];
     let providerAuthUrl = '/auth/' + options.provider;
     let providerCallbackUrl = providerAuthUrl + '/callback';
-    providerConfig.callbackURL = 'https://' + config.websiteDomain + providerCallbackUrl;
+    providerConfig.callbackURL = config.websiteRootAddress + providerCallbackUrl;
 
     passport.use(new options.Strategy(config.providers[options.provider], function() {
       let args = Array.prototype.slice.call(arguments);
       let profile = args[args.length - 2];
       let done = args[args.length - 1];
-      let filteredProfile = {};
-      PROFILE_ATTRIBUTES.forEach(function(key) {
-        if (profile[key])
-          filteredProfile[key] = profile[key];
+      return done(null, {
+        id: profile.id,
+        provider: options.provider
       });
-      return done(null, filteredProfile);
     }));
 
     options.app.get(
       providerAuthUrl,
       function setRedirect(req, res, next) {
-        let referrerHeader = req.query.referrer || req.get('Referrer');
-        console.log('referrerHeader:', referrerHeader);
-        var referrer = config.referrers[referrerHeader];
-        console.log('referrer:', referrer);
+        let referrerHeader = req.get('Referrer') || req.query.referrer;
+        let referrer = config.referrers[referrerHeader];
         if (!referrer) {
           res.status(400).send('bad rererrer');
           return;
@@ -51,7 +44,6 @@ module.exports = {
     );
 
     options.app.get(providerCallbackUrl, function(req, res, next) {
-      console.log('req.session.referrer', req.session.referrer);
       if (!req.session.referrer) {
         res.status(400).send('bad request');
         return;
@@ -63,17 +55,11 @@ module.exports = {
 
       passport.authenticate(options.authenticate, function(err, profile, info) {
         if (err || !profile) {
-          console.error(err);
           res.redirect(appendQuery(referrer.errorRedirect, query));
           return;
         }
 
-        jwt.getToken({
-          profile,
-          secret: referrer.secret,
-          issuer: referrer.issuer,
-          audience: referrer.audience
-        })
+        jwt.getToken({ profile, secret: referrer.secret, issuer: options.issuer })
         .then(function(token) {
           query.jwt = token;
           res.redirect(appendQuery(referrer.successRedirect, query));
