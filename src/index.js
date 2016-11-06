@@ -13,19 +13,8 @@ const lex = require('letsencrypt-express').create({
   server: 'staging',
   email: config.letsEncrypt.email,
   agreeTos: true,
-  approveDomains: approveDomains,
-  domains: [config.websiteDomain]
+  approveDomains: [config.websiteDomain]
 });
-
-function approveDomains(opts, certs, cb) {
-  if (certs)
-    opts.domains = certs.altnames;
-  else {
-    opts.email = 'john.doe@example.com';
-    opts.agreeTos = true;
-  }
-  cb(null, { options: opts, certs: certs });
-}
 
 app.use(session({
   secret: config.sessionSecret,
