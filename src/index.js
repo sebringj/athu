@@ -7,7 +7,6 @@ const app = express();
 const passport = require('passport');
 const passportHelper = require('./utils/passport');
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 
 const lex = require('letsencrypt-express').create({
   server: 'https://acme-v01.api.letsencrypt.org/directory',
@@ -16,7 +15,6 @@ const lex = require('letsencrypt-express').create({
   approveDomains: [config.websiteDomain]
 });
 
-app.use(cookieParser());
 app.use(session({
   secret: config.sessionSecret,
   resave: false,
