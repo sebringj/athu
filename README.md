@@ -1,6 +1,8 @@
 # athu
 authentication microservice
 
+recently integrated with express and letsEncrypt for easy SSL setup
+
 athu only cares about identifying a user and sending a JWT back to the consuming website, focusing on simple configuration over programming so that adding a new provider is just a matter of
 installing a passport compatible npm package then adding it to the config directory.
 
