@@ -20,6 +20,7 @@ for (let referrerName of referrerNames) {
 }
 
 module.exports = {
+  port: process.env.PORT,
   websiteDomain: process.env.WEBSITE_DOMAIN,
   sessionSecret: process.env.SESSION_SECRET,
   letsEncrypt: {

@@ -18,7 +18,10 @@ module.exports = {
     let providerConfig = config.providers[options.provider];
     let providerAuthUrl = '/auth/' + options.provider;
     let providerCallbackUrl = providerAuthUrl + '/callback';
-    providerConfig.callbackURL = 'https://' + config.websiteDomain + providerCallbackUrl;
+    let protocol = 'https'
+    if (config.websiteDomain.indexOf('localhost') > -1)
+      protocol = 'http'
+    providerConfig.callbackURL = `${protocol}://` + config.websiteDomain + providerCallbackUrl;
 
     passport.use(new options.Strategy(config.providers[options.provider], function() {
       let args = Array.prototype.slice.call(arguments);
