@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "asn1.js": "^2.2.1",
-    "base64-url": "^1.2.1",
+    "base64-url": "^2.3.2",
     "body-parser": "^1.14.1",
     "config": "^1.16.0",
     "dotenv": "^6.0.0",
@@ -13,7 +13,7 @@
     "express-session": "^1.11.3",
     "jsonwebtoken": "^5.0.5",
     "letsencrypt-express": "^2.0.5",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.15",
     "passport": "^0.2.0",
     "passport-google-oauth": "^0.2.0",
     "redirect-https": "^1.1.0",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "jshint": "^2.9.2",
-    "mocha": "^2.4.5",
+    "mocha": "^6.2.2",
     "request": "^2.72.0"
   },
   "scripts": {
