@@ -39,7 +39,7 @@ callback: https://[athu host]**/auth/facebook/callback**
 ##
 
 ## Tech stack
-Node v4.1.1
+Node v12+
 
 ## Passport Providers pre-installed
 
